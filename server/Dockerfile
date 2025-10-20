@@ -1,9 +1,16 @@
-# Very small Java app image: compile a single-file HTTP server at build time and run it
-FROM openjdk:17-jdk-alpine
-WORKDIR /app
+# Build Stage: use Java SDK to compile the application
+FROM ibmjava:sdk-alpine AS build
 
-COPY src/Main.java .
-RUN javac Main.java
+WORKDIR /app
+COPY src .
+RUN mkdir target
+
+RUN javac Main.java -d target
+
+# Runtime Stage: use IBM Small Footprint Java Runtime to run the application
+FROM ibmjava:sfj-alpine AS runtime
+WORKDIR /app
+COPY --from=build /app/target .
 
 EXPOSE 8080
 CMD ["java", "Main"]

@@ -1,0 +1,30 @@
+# Frontend Node / Next.js / React
+.next
+build
+dist
+node_modules
+out
+
+# Java
+target/
+*.class
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Local env files
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/
+
+# Test / coverage
+coverage/
+*.lcov

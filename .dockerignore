@@ -1,0 +1,25 @@
+# exclude VCS
+.git
+.gitignore
+
+# Frontend modules and build outputs
+.next
+build
+dist
+node_modules
+out
+target
+*.class
+
+# Local env and secrets
+.env
+.env.*
+
+# Logs and OS
+*.log
+logs
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode
