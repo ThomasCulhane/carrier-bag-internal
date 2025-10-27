@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "submitDate": "2025-10-22",
+    "title": "Test Work 1",
+    "author": "Test Author 1",
+    "status": "UNASSIGNED",
+    "genre": "FICTION",
+    "emailed": true
+  },
+  {
+    "id": 2,
+    "submitDate": "2025-10-12",
+    "title": "Test Work 2",
+    "author": "Test Author 2",
+    "status": "FINALIST",
+    "genre": "POETRY",
+    "emailed": false
+  },
+  {
+    "id": 3,
+    "submitDate": "2025-10-14",
+    "title": "Test Work 3",
+    "author": "Test Author 3",
+    "status": "REJECTED",
+    "genre": "POETRY",
+    "emailed": false
+  }
+]

@@ -1,0 +1,7 @@
+# Nginx template file for defining upstream connections, populated using environment variables
+upstream frontend_up {
+    server frontend-server:${FRONTEND_HOST_PORT};
+}
+upstream backend_up {
+    server backend-server:${SERVER_HOST_PORT};
+}

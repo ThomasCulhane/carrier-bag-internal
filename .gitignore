@@ -1,30 +1,23 @@
-# Frontend Node / Next.js / React
+# Frontend Next.js / React
 .next
-build
-dist
 node_modules
-out
 
-# Java
+# Java Server
 target/
-*.class
+lib/
 
 # Logs
 logs/
 *.log
-npm-debug.log*
 
-# Local env files
-.env
-.env.*
+# env files (except .env.example)
+*.env
+*.env.*
+!*.env.example
 
 # OS
 .DS_Store
 Thumbs.db
 
 # Editors / IDEs
-.vscode/
-
-# Test / coverage
-coverage/
-*.lcov
+.vscode

@@ -1,0 +1,12 @@
+# Java Server build outputs and libraries
+target
+lib
+
+# Logs and OS
+*.log
+logs
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode

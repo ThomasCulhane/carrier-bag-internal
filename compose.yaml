@@ -1,14 +1,13 @@
+# modified to load environment from .env.development by default (use .env.production for prod)
 services:
   frontend-server:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     environment:
-      - NODE_ENV=production
-      - PORT=3000
-      - HOST=0.0.0.0
+      - PORT=${FRONTEND_EXPOSED_PORT:-3000}
     ports:
-      - "3000:3000"
+      - "${FRONTEND_HOST_PORT:-3000}:${FRONTEND_EXPOSED_PORT:-3000}"
     networks:
       - web
 
@@ -16,8 +15,13 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    env_file:
+      - ./env/db.env.production
+    environment:
+      - PORT=${BACKEND_EXPOSED_PORT:-8080}
+      - POSTGRES_PORT=${DB_EXPOSED_PORT:-5432}
     ports:
-      - "8080:8080"
+      - "${BACKEND_HOST_PORT:-8080}:${BACKEND_EXPOSED_PORT:-8080}"
     networks:
       - web
 
@@ -26,10 +30,25 @@ services:
     depends_on:
       - frontend-server
       - backend-server
+    environment:
+      - FRONTEND_HOST_PORT=${FRONTEND_HOST_PORT:-3000}
+      - SERVER_HOST_PORT=${BACKEND_HOST_PORT:-8080}
     ports:
       - "80:80"
     volumes:
+      - ./proxy/templates:/etc/nginx/templates:ro
       - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - web
+
+  db:
+    image: postgres:15-alpine
+    env_file:
+      - ./env/db.env.production
+    volumes:
+      - ./server/init:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "${DB_HOST_PORT:-5432}:${DB_EXPOSED_PORT:-5432}"
     networks:
       - web
 
