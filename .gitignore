@@ -3,8 +3,8 @@
 node_modules
 
 # Java Server
-target/
-lib/
+target
+lib
 
 # Logs
 logs/
