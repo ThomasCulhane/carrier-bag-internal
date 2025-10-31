@@ -20,6 +20,10 @@ public class Main {
         server.createContext("/api/ping", new PingHandler());
         server.createContext("/api/data", new StaticFileHandler("static/example_data.json"));
         server.createContext("/api/rows", new DBHandler());
+        server.createContext("/api/secure-data", new AuthRequiredHandler(
+            new StaticFileHandler("static/secure_data.json"), false)
+        );
+        server.createContext("/api/token", new JWTGenHandler());
         server.setExecutor(null);
         System.out.println("Java app listening on port " + Main.PORT);
         server.start();
